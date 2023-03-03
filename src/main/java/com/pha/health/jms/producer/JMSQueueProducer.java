@@ -33,6 +33,7 @@ public class JMSQueueProducer extends JMSQueueWorker {
      */
     public void sendMessage(final Object message) throws JMSException {
 
+       //create connection objects
         Connection connection = null;
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connection = connectionFactory.createConnection();
@@ -48,16 +49,16 @@ public class JMSQueueProducer extends JMSQueueWorker {
 
         MessageProducer producer = session.createProducer(inboxQueue);
 
-        Integer countOfMessagesSent = 1;
-
         Message messageToSendToQueue = session.createObjectMessage((Serializable) message);
 
         if (outboxQueue != null) {
+
+            // send message to queue
             messageToSendToQueue.setJMSReplyTo((Destination) outboxQueue);
+
         }
 
         producer.send(messageToSendToQueue);
-        countOfMessagesSent++;
 
         producer.close();
         session.close();

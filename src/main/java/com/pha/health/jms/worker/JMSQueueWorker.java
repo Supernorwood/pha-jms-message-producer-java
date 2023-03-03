@@ -1,7 +1,7 @@
 package com.pha.health.jms.worker;
 
 /**
- * Abstract JMS Queue Worker
+ * Abstract JMS Queue Worker. Base class for JMS Producers and JMS Consumers.
  *
  */
 public abstract class JMSQueueWorker {
@@ -15,6 +15,7 @@ public abstract class JMSQueueWorker {
      * Port for JMS application on target queue
      */
     protected final Integer port;
+
     /**
      * Name of the target JMS Queue
      */
@@ -36,6 +37,7 @@ public abstract class JMSQueueWorker {
     public JMSQueueWorker(final String targetServer, final int port, final String targetJMSQueue) {
 
         this.targetServer = targetServer;
+
         this.port = port;
 
         this.targetJMSQueue = targetJMSQueue;
