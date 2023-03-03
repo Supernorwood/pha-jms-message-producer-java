@@ -1,14 +1,10 @@
-package org.example.producer;
-
-import org.slf4j.LoggerFactory;
+package com.pha.health.jms.worker;
 
 /**
- * Abstract JMS Queue ProducerConsumer
+ * Abstract JMS Queue Worker
  *
  */
-public abstract class JMSQueueProducerConsumer {
-
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(JMSQueueProducerConsumer.class);
+public abstract class JMSQueueWorker {
 
     /**
      * JMS Server hostname or IP
@@ -37,15 +33,14 @@ public abstract class JMSQueueProducerConsumer {
      * @param port port the JMS Queue application is listening on
      * @param targetJMSQueue target JMS Queue name
      */
-    public JMSQueueProducerConsumer(final String targetServer, final int port, final String targetJMSQueue) {
+    public JMSQueueWorker(final String targetServer, final int port, final String targetJMSQueue) {
+
         this.targetServer = targetServer;
         this.port = port;
-        this.targetJMSQueue = targetJMSQueue;
-        this.connectionString = this.buildConnectionString();
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("the created JMSQueueProducerConsumer: {}", this);
-        }
+        this.targetJMSQueue = targetJMSQueue;
+
+        this.connectionString = this.buildConnectionString();
 
     }
 
@@ -90,7 +85,7 @@ public abstract class JMSQueueProducerConsumer {
 
     @Override
     public String toString() {
-        return "JMSQueueProducerConsumer{" + "targetServer=" + targetServer + ", port=" + port + ", targetJMSQueue=" + targetJMSQueue + ", connectionString=" + connectionString + '}';
+        return "JMSQueueWorker{" + "targetServer=" + targetServer + ", port=" + port + ", targetJMSQueue=" + targetJMSQueue + ", connectionString=" + connectionString + '}';
     }
 
 }
