@@ -33,7 +33,7 @@ public class JMSQueueProducer extends JMSQueueWorker {
      */
     public void sendMessage(final Object message) throws JMSException {
 
-       //create connection objects
+        //create connection objects
         Connection connection = null;
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connection = connectionFactory.createConnection();
